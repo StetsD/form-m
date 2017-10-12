@@ -365,14 +365,14 @@ class Form {
 
 			$.ajax(body).done((data) => {
 				if (callbackAjaxSuccess) {
-					callbackAjaxSuccess()
+					callbackAjaxSuccess(data)
 				}
 				if (that.clearInputs) {
 					this.clear()
 				}
 			}).fail((xhr, textStatus) => {
 				if (callbackAjaxError) {
-					callbackAjaxError()
+					callbackAjaxError(xhr)
 				}
 			}).complete((xhr, textStatus) => {
 				that.xhr = xhr;
@@ -381,7 +381,7 @@ class Form {
 					this.setServerError(that.xhr, that)
 				}
 				if (callbackAjaxComplete) {
-					callbackAjaxComplete()
+					callbackAjaxComplete(xhr)
 				}
 				that.$elemSubmit.prop('disabled', false);
 			});
